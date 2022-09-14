@@ -13,7 +13,7 @@ class Calculator {
     }
     Delete()
     {
-
+        this.currentOperation = this.currentOperation.toString().slice(0, -1);
     }
     DisplayNumber(number)
     {
@@ -70,11 +70,44 @@ class Calculator {
         this.operation = undefined;
         this.previousOperation = '';
     }
+    GetDisplayNumber(number)
+    {
+        const stringNumber = number.toString();
+        const integerDigits = parseFloat(stringNumber.split('.')[0])
+        const decimalDigits = stringNumber.split('.')[1]
+        const floatNumber = parseFloat(number)
+        let integerDisplay;
+        if(isNaN(integerDigits))
+        {
+            integerDisplay = '';
+        }
+        else
+        {
+            integerDisplay = integerDigits.toLocaleString('en')
+            {
+                maximumFractionDigits: 0
+            }
+        }
+        if(decimalDigits != null)
+        {
+            return `${integerDisplay}.${decimalDigits}`;
+        }
+        else
+        {
+            return integerDisplay;
+        }
+    }
     UpdateDisplay()
     {
-
-        this.currentOperationTextElement.innerText = this.currentOperation;
-        this.previousOperationTextElement.innerText = this.previousOperation;
+        this.currentOperationTextElement.innerText = this.GetDisplayNumber(this.currentOperation);
+        if(this.operation != null)
+        {
+            this.previousOperationTextElement.innerText = `${this.GetDisplayNumber(this.previousOperation)} ${this.operation}`;
+        }
+        else
+        {
+            this.previousOperationTextElement.innerText = '';
+        }
     }
 }
 
@@ -106,5 +139,9 @@ equalsButton.addEventListener('click', button => {
 })
 clearButton.addEventListener('click', button => {
     calculator.Clear();
+    calculator.UpdateDisplay();
+})
+deleteButton.addEventListener('click', button => {
+    calculator.Delete();
     calculator.UpdateDisplay();
 })
