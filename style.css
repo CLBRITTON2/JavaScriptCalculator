@@ -5,9 +5,41 @@
 body {
     padding: 0;
     margin: 0;
+    background: linear-gradient(to top, rgb(0, 0, 0), rgb(145, 145, 145));
 }
 .calculator-grid {
     display: grid;
     justify-content: center;
-    align-items: center;
+    align-content: center;
+    min-height: 100vh;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+}
+.calculator-grid > button {
+    cursor: pointer;
+    font-size: 2rem;
+    border: 1px solid black;
+    outline: none;
+    background-color: rgba(255, 159, 159, 0.75)
+}
+.calculator-grid > button:hover {
+    background-color: rgba(255, 125, 125, 0.9);
+}
+.double-size {
+    grid-column: span 2;
+}
+.output {
+    grid-column: 1 / -1;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 10px;
+    word-wrap: break-word;
+    word-break:break-all;
+}
+.output .current-operation {
+    color: white;
+    font-size: 2.5rem;
 }
