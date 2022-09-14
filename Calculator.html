@@ -6,12 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Calculator</title>
         <link href="./style.css" rel="stylesheet" type="text/css">
-        <script src="javascript.js"></script>
+        <script src="javascript.js" defer></script>
     </head>
     <body>
         <div class="calculator-grid">
             <div class="output">
-                <div class="current-operation" data-current-operation></div>
+                <div data-previous-operation class="previous-operation"></div>
+                <div data-current-operation class="current-operation"></div>
             </div>
             <button class="double-size" data-clear>AC</button>
             <button data-delete>DEL</button>
@@ -28,7 +29,7 @@
             <button data-number>8</button>
             <button data-number>9</button>
             <button data-operation>+</button>
-            <button class="double-size" data-number>0</button>
+            <button data-number class="double-size">0</button>
             <button data-number>.</button>
             <button data-equals>=</button>
         </div>
